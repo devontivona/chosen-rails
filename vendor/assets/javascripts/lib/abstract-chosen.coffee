@@ -35,13 +35,7 @@ class AbstractChosen
     @max_selected_options = @options.max_selected_options || Infinity
 
   set_default_text: ->
-    if @form_field.getAttribute("data-placeholder")
-      @default_text = @form_field.getAttribute("data-placeholder")
-    else if @is_multiple
-      @default_text = @options.placeholder_text_multiple || @options.placeholder_text || "Select Some Options"
-    else
-      @default_text = @options.placeholder_text_single || @options.placeholder_text || "Select an Option"
-
+    @default_text = ""
     @results_none_found = @form_field.getAttribute("data-no_results_text") || @options.no_results_text || "No results match"
 
   mouse_enter: -> @mouse_on_container = true

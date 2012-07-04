@@ -313,13 +313,9 @@ class Chosen extends AbstractChosen
 
   choice_destroy: (link) ->
     @choices -= 1
-    this.show_search_field_default()
-
     this.results_hide() if @is_multiple and @choices > 0 and @search_field.val().length < 1
-
     this.result_deselect (link.attr "rel")
     link.parents('li').first().remove()
-    @search_field.blur()
 
   results_reset: ->
     @form_field.options[0].selected = true
@@ -441,6 +437,8 @@ class Chosen extends AbstractChosen
 
     if results < 1 and searchText.length
       this.no_results searchText
+    else if results < 1
+      this.results_hide()
     else
       this.winnow_results_set_highlight()
 
@@ -550,9 +548,6 @@ class Chosen extends AbstractChosen
 
       w = div.width() + 25
       div.remove()
-
-      if( w > @f_width-10 )
-        w = @f_width - 10
 
       @search_field.css({'width': w + 'px'})
 
