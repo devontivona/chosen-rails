@@ -319,6 +319,7 @@ class Chosen extends AbstractChosen
 
     this.result_deselect (link.attr "rel")
     link.parents('li').first().remove()
+    @search_field.blur()
 
   results_reset: ->
     @form_field.options[0].selected = true
